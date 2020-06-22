@@ -14,8 +14,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from cruds_adminlte.urls import crud_for_app
+from cruds_adminlte.urls import crud_for_model
+
+from django.apps import apps
+
+from instories import views
 
 urlpatterns = [
+    path('accounts/login/', views.custom_login, name='login'),
+    path('logout/', views.custom_logout, name='logout'),
+    # path('notify/', include('notify.urls')),
+    path('', include('notify.urls')),
     path('admin/', admin.site.urls),
 ]
+urlpatterns += crud_for_app('notify', login_required=True,
+                            check_perms=True)
+
+# urlpatterns += crud_for_model(apps.get_model('notify', 'Option'))
+# urlpatterns += crud_for_model(apps.get_model('notify', 'Push'))
