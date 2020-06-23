@@ -151,8 +151,8 @@ DATE_INPUT_FORMATS = ['%d-%m-%Y', '%Y-%m-%d', '%d/%m/%Y', '%d/%m/%y']
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
+STATIC_URL = 'static/'
+MEDIA_URL = 'media/'
 
 STATIC_ROOT = 'static_root/'
 MEDIA_ROOT = 'media_root/'
