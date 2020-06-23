@@ -31,11 +31,6 @@ class PushForm(forms.ModelForm):
             'image': ImageCropWidget(),
             'send_date': forms.DateInput(attrs={'placeholder': 'DD/MM/YY'}, format='%d/%m/%y')
         }
-        # send_date = forms.DateField(
-        #     widget=forms.DateInput(format='%m/%d/%y'),
-        #     input_formats=('%m/%d/%y',)
-        # )
-
 
 # class PushForm(forms.Form):
 #     title = forms.CharField(widget=, max_length=50,
@@ -50,4 +45,3 @@ class PushForm(forms.ModelForm):
 #
 # def image_thumb(self):
 #     return '<img src="/media/%s" height="100" />' % self.image
-

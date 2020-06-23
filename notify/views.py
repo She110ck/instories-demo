@@ -9,9 +9,6 @@ from notify.models import Push
 
 
 def index(request):
-    args = {}
-    pushes = Push.objects.all()
-    args = {'pushes': pushes}
     args = {'push_form': PushForm()}
     return render(request, 'notify/base.html', args)
 
@@ -19,8 +16,7 @@ def index(request):
 def notify_send(request):
     if request.method == 'POST':
         push = PushForm(request.POST)
-        print("========", push.errors)
-        print(push.send_date)
+        print("ERROR: ", push.errors)
         push.save(commit=True)
     # get_redis_connection("default").flushall()
     return redirect('/notify/push/list')
