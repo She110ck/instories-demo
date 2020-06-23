@@ -12,11 +12,15 @@ def index(request):
     args = {}
     pushes = Push.objects.all()
     args = {'pushes': pushes}
-    args = {'push_form':PushForm}
-    args['gross'] = Push.objects.count()
+    args = {'push_form': PushForm()}
     return render(request, 'notify/base.html', args)
 
 
-def notify(request):
-    get_redis_connection("default").flushall()
-    return render(request, 'notify/notify.html', {})
+def notify_send(request):
+    if request.method == 'POST':
+        push = PushForm(request.POST)
+        print("========", push.errors)
+        print(push.send_date)
+        push.save(commit=True)
+    # get_redis_connection("default").flushall()
+    return redirect('/notify/push/list')

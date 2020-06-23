@@ -9,16 +9,21 @@ class Option(models.Model):
     value = models.BooleanField(default=False)
 
 
+# @admin_thumbnails.thumbnail('image')
 class Push(models.Model):
     class Meta:
         verbose_name_plural = 'Pushes'
 
-    title = models.CharField(max_length=50)
-    text = models.TextField()
-    create_date = models.DateField()
-    send_date = models.DateField()
-    is_sent = models.BooleanField(default=False)
-    objects = models.Manager()
+    def __str__(self):
+        return self.title
+
+    title = models.CharField(max_length=50, null=True, blank=True, verbose_name=' Укажите заголовок')
+    text = models.TextField(null=True, blank=True, verbose_name='Текст уведомления')
+    image = models.ImageField(null=True, blank=True, verbose_name='Изображение уведомления')
+    name = models.CharField(max_length=255, null=True, blank=True, verbose_name='Название уведомления')
+    create_date = models.DateField(null=True, blank=True, auto_now=True)
+    send_date = models.DateField(null=True, blank=True, verbose_name='Дата отправки')
+    is_sent = models.BooleanField(null=True, blank=True, default=False, verbose_name='Отправлен')
 
     @property
     def count(self):

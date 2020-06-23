@@ -52,7 +52,8 @@ INSTALLED_APPS = [
 THUMBNAIL_PROCESSORS = (
                            'image_cropping.thumbnail_processors.crop_corners',
                        ) + thumbnail_settings.THUMBNAIL_PROCESSORS
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 IMAGE_CROPPING_JQUERY_URL = None
 
 MIDDLEWARE = [
@@ -145,7 +146,10 @@ USE_L10N = True
 
 USE_TZ = True
 
+DATE_INPUT_FORMATS = ['%d-%m-%Y', '%Y-%m-%d', '%d/%m/%Y', '%d/%m/%y']
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'

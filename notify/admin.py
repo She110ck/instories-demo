@@ -1,6 +1,8 @@
 from django.contrib import admin
 
 # Register your models here.
+from django import forms
+
 from notify.models import Option, Push
 
 
@@ -11,7 +13,6 @@ class OptionsAdmin(admin.ModelAdmin):
 class PushesAdmin(admin.ModelAdmin):
     list_display = ('title', 'count',)
     list_display_links = ('title',)
-    pass
 
 
 admin.site.register(Option, OptionsAdmin)

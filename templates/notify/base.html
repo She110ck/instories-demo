@@ -1,9 +1,77 @@
 {% extends 'adminlte/base.html' %}
+{% load crispy_forms_filters %}
 {% load crud_tags %}
 {% load crispy_forms_tags %}
+{% load static i18n %}
 
+
+{% block stylesheets %}
+    {% include 'adminlte/lib/_styles.html' %}
+    <script src="{% static "jquery/dist/jquery.min.js" %}"></script>
+    <style>
+        .android {
+            {#background-image: url("{% static "img/android.png" %}");#}
+            height: 100px;
+        }
+       .ios {
+       {#background-image: url("{% static "img/rsz_ios.png" %}");#}
+            height: 100px;
+        }
+    </style>
+{% endblock %}
 {% block title %}Instories{% endblock title %}
+{% block content_header %}
+    <section class="content-header">
+        <h1>
+            {% block page_name %}{% endblock %}
+            {% block no_description %}
+                {% block page_description %}Пуш уведомление{% endblock %}
+            {% endblock %}
+        </h1>
+    </section>
+{% endblock content_header %}
 {% block content %}
-    Just some example content
-    {{ push_form }}
+    <div>
+        <div class="form-row">
+            <div class="form-group col-md-6 mb-0">
+
+                <form method="post" action="/notify/send/" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    {{ push_form|crispy }}
+{#                                        {{ push_form.image_thumb | as_crispy_field }}#}
+{#                                        {% crispy push_form push_form.helper %}#}
+                    <br/>
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+
+                </form>
+            </div>
+
+            <div class="form-group col-md-6 mb-0">
+                <div class="form-group android">
+                    <div class=""><p id="id_title_android" style="font-weight: bold"></p></div>
+                    <div class=""><p id="id_text_android"></p></div>
+                </div>
+                <div class="form-group ios">
+                    <div class=""><p id="id_title_ios" style="font-weight: bold"></p></div>
+                    <div class=""><p id="id_text_ios"></p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        $('#id_title').keyup(function () {
+
+            $('#id_title_android').text($(this).val());
+            $('#id_title_ios').text($(this).val());
+        });
+
+
+        $('#id_text').keyup(function () {
+
+            $('#id_text_android').text($(this).val());
+            $('#id_text_ios').text($(this).val());
+        });
+    </script>
 {% endblock content %}

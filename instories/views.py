@@ -12,7 +12,7 @@ def custom_login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('/notify')
+            return redirect('/notify/push/list')
         else:
             messages.error(request, 'username or password not correct')
             return redirect('login')
