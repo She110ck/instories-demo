@@ -19,7 +19,7 @@ class Push(models.Model):
 
     title = models.CharField(max_length=50, null=True, blank=True, verbose_name=' Укажите заголовок')
     text = models.TextField(null=True, blank=True, verbose_name='Текст уведомления')
-    image = models.ImageField(null=True, blank=True, verbose_name='Изображение уведомления')
+    image = models.ImageField(null=True, blank=True, verbose_name='Изображение уведомления', upload_to='media_root/')
     name = models.CharField(max_length=255, null=True, blank=True, verbose_name='Название уведомления')
     create_date = models.DateField(null=True, blank=True, auto_now=True)
     send_date = models.DateField(null=True, blank=True, verbose_name='Дата отправки')
