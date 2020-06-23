@@ -25,7 +25,7 @@ SECRET_KEY = '3++3h9kv=008=#-u*h5q&!pzc)33*^4+la@2_c4o1l5fe(-^81'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['168.61.180.157','she110ck.centralus.cloudapp.azure.com']
 
 # Application definition
 # v0.17
